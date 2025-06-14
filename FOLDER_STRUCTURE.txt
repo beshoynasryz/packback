@@ -1,0 +1,54 @@
+project-root/
+├── node_modules/ (auto-generated)
+├── src/
+│   ├── modules/
+│   │   ├── user/ (example module)
+│   │   │   ├── user.controller.js
+│   │   │   ├── user.model.js
+│   │   │   ├── user.routes.js
+│   │   │   ├── user.service.js (business logic)
+│   │   │   ├── user.validation.js
+│   │   │   ├── user.test.js
+│   │   │   └── index.js (optional module exports)
+│   │   │
+│   │   ├── auth/ (another example module)
+│   │   │   ├── auth.controller.js
+│   │   │   ├── auth.model.js
+│   │   │   ├── auth.routes.js
+│   │   │   ├── auth.service.js
+│   │   │   ├── auth.middleware.js
+│   │   │   └── ...
+│   │   │
+│   │   └── product/ (another example module)
+│   │       ├── product.controller.js
+│   │       ├── product.model.js
+│   │       ├── product.routes.js
+│   │       └── ...
+│   │
+│   ├── config/
+│   │   ├── db.js
+│   │   ├── passport.js (if using auth)
+│   │   └── config.js
+│   │
+│   ├── middlewares/
+│   │   ├── errorHandler.js
+│   │   ├── auth.js
+│   │   └── validation.js
+│   │
+│   ├── utils/
+│   │   ├── helpers.js
+│   │   ├── logger.js
+│   │   └── apiFeatures.js
+│   │
+│   ├── constants/
+│   │   ├── httpStatusCodes.js
+│   │   ├── responseMessages.js
+│   │   └── ...
+│   │
+│   ├── app.js
+│   └── server.js
+│
+├── .env
+├── .gitignore
+├── package.json
+└── README.md
