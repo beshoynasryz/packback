@@ -5,6 +5,7 @@ import bcrypt from "bcrypt";
 
 
 export const createUser = expressAsyncHandler(async (req, res, next) => {
+
     const { name, email, password, phone, role } = req.body;
 
     if (!name || !email || !password || !phone) {
