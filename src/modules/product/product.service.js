@@ -1,4 +1,3 @@
-
 import expressAsyncHandler from 'express-async-handler';
 import { Hash } from '../../utils/Hash/index.js';
 import productModel from './product.model.js';
@@ -115,9 +114,6 @@ export const searchProducts = expressAsyncHandler(async (req, res) => {
 		data: products
 	});
 });
-
-
-
 
 export const getBestSellerProducts = expressAsyncHandler(async (req, res) => {
 	const products = await productModel.find({ tags: 'bestSeller' });
