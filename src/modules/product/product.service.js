@@ -149,48 +149,7 @@ export const getProductsByColor = expressAsyncHandler(async (req, res) => {
 		data: products
 	});
 });
-export const getProductsByPriceRange = expressAsyncHandler(async (req, res) => {
-	const { minPrice, maxPrice } = req.query;
 
-	if (!minPrice || !maxPrice) {
-		return res.status(400).json({ message: 'Min and Max price are required' });
-	}
-
-	const products = await productModel.find({
-		price: { $gte: minPrice, $lte: maxPrice }
-	});
-
-	if (products.length === 0) {
-		return res
-			.status(404)
-			.json({ message: 'No products found in this price range' });
-	}
-
-	res.status(200).json({
-		success: true,
-		data: products
-	});
-});
-export const getProductsByTag = expressAsyncHandler(async (req, res) => {
-	const { tag } = req.params;
-
-	if (!tag) {
-		return res.status(400).json({ message: 'Tag is required' });
-	}
-
-	const products = await productModel.find({ tags: tag });
-
-	if (products.length === 0) {
-		return res
-			.status(404)
-			.json({ message: `No products found with tag ${tag}` });
-	}
-
-	res.status(200).json({
-		success: true,
-		data: products
-	});
-});
 export const getProductsByRating = expressAsyncHandler(async (req, res) => {
 	const { rating } = req.query;
 
