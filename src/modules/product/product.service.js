@@ -114,7 +114,6 @@ export const searchProducts = expressAsyncHandler(async (req, res) => {
 		data: products
 	});
 });
-
 export const getBestSellerProducts = expressAsyncHandler(async (req, res) => {
 	const products = await productModel.find({ tags: 'bestSeller' });
 
@@ -145,7 +144,6 @@ export const getProductsByColor = expressAsyncHandler(async (req, res) => {
 		data: products
 	});
 });
-
 export const getProductsByRating = expressAsyncHandler(async (req, res) => {
 	const { rating } = req.query;
 
