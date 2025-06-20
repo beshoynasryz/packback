@@ -135,28 +135,7 @@ export const getProductsByCategory = expressAsyncHandler(async (req, res) => {
 		data: products
 	});
 });
-export const getProductsBySubcategory = expressAsyncHandler(
-	async (req, res) => {
-		const { subcategory } = req.params;
 
-		if (!subcategory) {
-			return res.status(400).json({ message: 'Subcategory is required' });
-		}
-
-		const products = await productModel.find({ subcategory });
-
-		if (products.length === 0) {
-			return res
-				.status(404)
-				.json({ message: 'No products found in this subcategory' });
-		}
-
-		res.status(200).json({
-			success: true,
-			data: products
-		});
-	}
-);
 export const getFeaturedProducts = expressAsyncHandler(async (req, res) => {
 	const products = await productModel.find({ tags: 'featured' });
 
