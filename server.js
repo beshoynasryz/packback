@@ -1,21 +1,24 @@
-import dotenv from 'dotenv';
-dotenv.config({ path: path.resolve('src/config/.env') });
-
 import express from 'express';
 import path from 'path';
+import dotenv from 'dotenv';
+import { fileURLToPath } from 'url';
+import bootstrap from './src/app.controller.js';
+
+
+// Resolve __dirname in ES Modules
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+// Load env variables
+dotenv.config({ path: path.resolve(__dirname, 'src/config/.env') });
 
 const app = express();
 const port = process.env.PORT || 3000;
 
+// Run bootstrap
 bootstrap(app, express);
 
-app.listen(port, () => console.log(`Example app listening on port ${port}!`));
-app.use(express.urlencoded({ extended: true }));
-
-function bootstrap(app, express) {
-	app.use(express.json());
-
-	app.get('/', (req, res) => {
-		res.send('BNE packback e-commerce API is running');
-	});
-}
+// Start server
+app.listen(port, () => {
+  console.log(`🚀 Server is running on http://localhost:${port}`);
+});
