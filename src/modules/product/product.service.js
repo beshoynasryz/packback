@@ -117,30 +117,8 @@ export const searchProducts = expressAsyncHandler(async (req, res) => {
 });
 
 
-export const getFeaturedProducts = expressAsyncHandler(async (req, res) => {
-	const products = await productModel.find({ tags: 'featured' });
 
-	if (products.length === 0) {
-		return res.status(404).json({ message: 'No featured products found' });
-	}
 
-	res.status(200).json({
-		success: true,
-		data: products
-	});
-});
-export const getNewArrivalProducts = expressAsyncHandler(async (req, res) => {
-	const products = await productModel.find({ tags: 'newArrival' });
-
-	if (products.length === 0) {
-		return res.status(404).json({ message: 'No new arrival products found' });
-	}
-
-	res.status(200).json({
-		success: true,
-		data: products
-	});
-});
 export const getBestSellerProducts = expressAsyncHandler(async (req, res) => {
 	const products = await productModel.find({ tags: 'bestSeller' });
 
