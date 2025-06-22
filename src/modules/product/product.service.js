@@ -283,29 +283,4 @@ export const getProductsBySorting = expressAsyncHandler(async (req, res) => {
 		data: products
 	});
 });
-export const getProductsByAvailability = expressAsyncHandler(
-	async (req, res) => {
-		const { available } = req.query;
 
-		if (available === undefined) {
-			return res
-				.status(400)
-				.json({ message: 'Availability status is required' });
-		}
-
-		const products = await productModel.find({
-			stock: available ? { $gt: 0 } : 0
-		});
-
-		if (products.length === 0) {
-			return res
-				.status(404)
-				.json({ message: 'No products found with this availability status' });
-		}
-
-		res.status(200).json({
-			success: true,
-			data: products
-		});
-	}
-);
