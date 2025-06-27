@@ -11,7 +11,7 @@ function bootstrap(app, express) {
 	app.get('/', (req, res) => {
 		res.send('🚀 BNE Packback e-commerce API is running');
 	});
-	app.use(globalErrorHandler)
+	app.use(globalErrorHandler);
 }
 
 export default bootstrap;
