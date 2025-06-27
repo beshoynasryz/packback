@@ -1,2 +1,2 @@
-export * from './hashing.js';
-export * from './compare.js';
+export * from "./compare.js";
+export * from "./hashing.js";

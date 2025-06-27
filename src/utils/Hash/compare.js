@@ -1,4 +1,8 @@
-import bcrypt from 'bcryptjs';
-export const Compare = async ({ key, hash }) => {
-	return await bcrypt.compareSync(key, hash);
-};
+
+
+
+import bcrypt from "bcrypt"
+
+export const Compare = async ({ key, hashed }) => {
+    return bcrypt.compareSync(key, hashed)
+}
