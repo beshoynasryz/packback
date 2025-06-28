@@ -6,7 +6,8 @@ function bootstrap(app, express) {
 	connectDB();
 
 	app.use(express.json());
-	app.use(express.urlencoded({ extended: true }));
+	app.use(express.urlencoded({ extended: false }));
+	app.use('/api/v1/products', productRoutes);
 
 	app.get('/', (req, res) => {
 		res.send('🚀 BNE Packback e-commerce API is running');

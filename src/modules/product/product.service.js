@@ -3,9 +3,10 @@ import { Hash } from '../../utils/Hash/index.js';
 import productModel from './product.model.js';
 
 export const createProduct = expressAsyncHandler(async (req, res, next) => {
-	const { name, description, price, category, stock } = req.body;
+	console.log('Creating product...', req.body);
+	const { name, description, price, stock } = req.body;
 
-	if (!name || !description || !price || !category || !stock) {
+	if (!name || !description || !price  || !stock) {
 		return next(new Error('All fields are required'));
 	}
 
@@ -18,7 +19,6 @@ export const createProduct = expressAsyncHandler(async (req, res, next) => {
 		name,
 		description,
 		price,
-		category,
 		stock
 	});
 
