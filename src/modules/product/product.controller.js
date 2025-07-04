@@ -9,4 +9,5 @@ import e from 'express';
 
 const router = express.Router();
 router.post('/create', createProduct);
+router.get('/:id', getProductById);
 export const productRoutes = router;
