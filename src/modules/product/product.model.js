@@ -2,12 +2,17 @@ import mongoose from 'mongoose';
 
 const productSchema = new mongoose.Schema(
 	{
-		id: {
-			type: Number,
-
-			unique: true
-		},
 		name: {
+			type: String,
+			required: true,
+			trim: true
+		},
+		title: {
+			type: String,
+			required: true,
+			trim: true
+		},
+		description: {
 			type: String,
 			required: true,
 			trim: true
@@ -17,32 +22,34 @@ const productSchema = new mongoose.Schema(
 			required: true,
 			min: 0
 		},
-		image: {
-			type: String
-		},
-		description: {
+		category: {
 			type: String,
-
+			required: true,
 			trim: true
 		},
-		stock: {
-			type: Number,
-
-			min: 0
+		images: {
+			type: [String],
+			required: true
 		},
-		rating: {
-			type: Number,
-
-			min: 0,
-			max: 5
+		sizes: {
+			type: [String],
+			required: true
 		},
-		color: {
-			type: String
+		materials: {
+			type: [String]
 		},
 		tags: {
+			type: [String]
+		},
+	
+		inStock: {
+			type: Boolean,
+			required: true,
+			default: true
+		},
+		colors: {
 			type: [String],
-			enum: ['featured', 'newArrival', 'bestSeller', null],
-			default: null
+			required: true
 		}
 	},
 	{

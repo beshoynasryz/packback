@@ -6,7 +6,7 @@ export const createProduct = expressAsyncHandler(async (req, res, next) => {
 	console.log('Creating product...', req.body);
 	const { name, description, price, stock } = req.body;
 
-	if (!name || !description || !price  || !stock) {
+	if (!name || !description || !price || !stock) {
 		return next(new Error('All fields are required'));
 	}
 
@@ -283,4 +283,3 @@ export const getProductsBySorting = expressAsyncHandler(async (req, res) => {
 		data: products
 	});
 });
-
