@@ -3,11 +3,35 @@ import { Hash } from '../../utils/Hash/index.js';
 import productModel from './product.model.js';
 
 export const createProduct = expressAsyncHandler(async (req, res, next) => {
-	console.log('Creating product...', req.body);
-	const { name, description, price, stock } = req.body;
+	const {
+		name,
+		title,
+		description,
+		price,
+		category,
+		images,
+		sizes,
+		materials,
+		tags,
+		inStock,
+		colors
+	} = req.body;
 
-	if (!name || !description || !price || !stock) {
-		return next(new Error('All fields are required'));
+	if (
+		!name ||
+		!title ||
+		!description ||
+		!price ||
+		!category ||
+		!images ||
+		!sizes ||
+		!colors
+	) {
+		return next(
+			new Error(
+				'Required fields are missing: name, title, description, price, category, images, sizes, colors'
+			)
+		);
 	}
 
 	const existingProduct = await productModel.findOne({ name });
@@ -17,9 +41,16 @@ export const createProduct = expressAsyncHandler(async (req, res, next) => {
 
 	const product = await productModel.create({
 		name,
+		title,
 		description,
 		price,
-		stock
+		category,
+		images,
+		sizes,
+		materials,
+		tags,
+		inStock,
+		colors
 	});
 
 	res.status(201).json({

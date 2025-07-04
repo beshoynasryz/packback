@@ -33,15 +33,17 @@ const productSchema = new mongoose.Schema(
 		},
 		sizes: {
 			type: [String],
-			required: true
+			required: true,
+			enum: ['S', 'M', 'L', 'XL', 'XXL']
 		},
 		materials: {
 			type: [String]
 		},
 		tags: {
-			type: [String]
+			type: [String],
+			enum: ['new-arrival', 'best-seller', 'featured', 'limited-edition']
 		},
-	
+
 		inStock: {
 			type: Boolean,
 			required: true,
