@@ -119,3 +119,35 @@ export const deleteProduct = expressAsyncHandler(async (req, res, next) => {
 		message: 'Product deleted successfully'
 	});
 });
+export const getAllProducts = expressAsyncHandler(async (req, res, next) => {
+	const page = Math.max(1, parseInt(req.query.page) || 1);
+	const limit = Math.max(1, parseInt(req.query.limit) || 10);
+	const skip = (page - 1) * limit;
+
+	const totalProducts = await productModel.countDocuments({});
+	const totalPages = Math.ceil(totalProducts / limit);
+
+	if (skip >= totalProducts && totalProducts !== 0) {
+		const error = new Error('Invalid page number');
+		error.status = 400;
+		return next(error);
+	}
+
+	const products = await productModel.find({}).skip(skip).limit(limit);
+
+	if (!products || products.length === 0) {
+		const error = new Error('No products found');
+		error.status = 404;
+		return next(error);
+	}
+
+	res.status(200).json({
+		success: true,
+		message: 'Products retrieved successfully',
+		totalPages,
+		currentPage: page,
+		limit,
+		totalProducts,
+		data: products
+	});
+});
