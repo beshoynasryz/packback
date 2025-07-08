@@ -4,7 +4,8 @@ import {
 	getProductById,
 	updateProduct,
 	deleteProduct,
-	getAllProducts
+	getAllProducts,
+	getProductsByCategory
 } from './product.service.js';
 
 
@@ -14,4 +15,6 @@ router.get('/:id', getProductById);
 router.put('/:id', updateProduct);
 router.delete('/:id', deleteProduct);
 router.get('/', getAllProducts);
+router.get('/category/:category', getProductsByCategory);
+
 export const productRoutes = router;
