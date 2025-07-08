@@ -151,3 +151,22 @@ export const getAllProducts = expressAsyncHandler(async (req, res, next) => {
 		data: products
 	});
 });
+export const getProductsByCategory = expressAsyncHandler(async (req, res, next) => {
+	const { category } = req.params;
+
+	if (!category) {
+		return next(new Error('Category is required'));
+	}
+
+	const products = await productModel.find({ category });
+
+	if (!products || products.length === 0) {
+		return res.status(404).json({ message: 'No products found in this category' });
+	}
+
+	res.status(200).json({
+		success: true,
+		message: 'Products retrieved successfully',
+		data: products
+	});
+});
