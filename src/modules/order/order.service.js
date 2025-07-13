@@ -3,6 +3,8 @@ import Order from "./order.model.js";
 import Product from "../product/product.model.js";
 import { AppError, asyncHandler } from "../../utils/globalErrorHandling/index.js";
 
+// Route: POST /api/v1/orders
+// Method: createOrder
 export const createOrderService = asyncHandler(async (data) => {
     const { userId, userName, userEmail, shippingAddress, items, paymentMethod } = data;
 
@@ -39,9 +41,11 @@ export const createOrderService = asyncHandler(async (data) => {
         totalAmount,
     });
 
-    return newOrder;
+    return newOrder.toObject();
 });
 
+// Route: GET /api/v1/orders/:id
+// Method: getOrderById
 export const getOrderByIdService = asyncHandler(async (orderId) => {
     const order = await Order.findById(orderId).populate('items.productId');
     if (!order) {
@@ -50,11 +54,15 @@ export const getOrderByIdService = asyncHandler(async (orderId) => {
     return order;
 });
 
+// Route: GET /api/v1/orders
+// Method: getAllOrders
 export const getAllOrdersService = asyncHandler(async () => {
     const orders = await Order.find().populate('items.productId');
     return orders;
 });
 
+// Route: PATCH /api/v1/orders/:id/status
+// Method: updateOrderStatus
 export const updateOrderStatusService = asyncHandler(async (orderId, status) => {
     const order = await Order.findById(orderId);
     if (!order) {
@@ -62,9 +70,11 @@ export const updateOrderStatusService = asyncHandler(async (orderId, status) => 
     }
     order.status = status;
     await order.save();
-    return order;
+    return order.toObject();
 });
 
+// Route: DELETE /api/v1/orders/:id
+// Method: deleteOrder
 export const deleteOrderService = asyncHandler(async (orderId) => {
     const order = await Order.findByIdAndDelete(orderId);
     if (!order) {
