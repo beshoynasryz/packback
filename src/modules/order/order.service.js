@@ -27,7 +27,7 @@ export const createOrderService = asyncHandler(async (data) => {
             price: product.price,
         });
         // Decrement product stock
-        product.inStock -= item.quantity;
+        product.inStock -= item.quantity
         await product.save();
     }
 

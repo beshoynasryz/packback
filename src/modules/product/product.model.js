@@ -48,6 +48,14 @@ const productSchema = new mongoose.Schema(
 		colors: {
 			type: [String],
 			required: true
+		},
+		rate: {
+			type: Number,
+			default: 0
+		},
+		ratingCount: {
+			type: Number,
+			default: 0
 		}
 	},
 	{
